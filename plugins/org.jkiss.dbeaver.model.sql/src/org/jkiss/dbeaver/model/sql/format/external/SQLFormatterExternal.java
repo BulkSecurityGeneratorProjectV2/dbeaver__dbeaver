@@ -32,6 +32,7 @@ import org.jkiss.utils.CommonUtils;
 import org.jkiss.utils.IOUtils;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.util.List;
 
 /**
@@ -100,7 +101,7 @@ public class SQLFormatterExternal implements SQLFormatter {
                     throw new IOException("No command specified for external formatter");
                 }
                 if (useFile) {
-                    tmpFile = File.createTempFile("dbeaver-sql-format", "sql");
+                    tmpFile = Files.createTempFile("dbeaver-sql-format", "sql").toFile();
                     try (final OutputStream os = new FileOutputStream(tmpFile)) {
                         try (final Writer out = new OutputStreamWriter(os, sourceEncoding)) {
                             IOUtils.copyText(new StringReader(source), out);

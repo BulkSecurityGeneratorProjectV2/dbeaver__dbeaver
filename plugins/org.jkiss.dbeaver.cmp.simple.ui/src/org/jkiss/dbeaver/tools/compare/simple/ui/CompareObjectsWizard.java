@@ -43,6 +43,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.nio.file.Files;
 import java.util.List;
 
 public class CompareObjectsWizard extends Wizard implements IExportWizard {
@@ -148,7 +149,7 @@ public class CompareObjectsWizard extends Wizard implements IExportWizard {
             File reportFile;
             switch (settings.getOutputType()) {
                 case BROWSER:
-                    reportFile = File.createTempFile("compare-report", ".html");
+                    reportFile = Files.createTempFile("compare-report", ".html").toFile();
                     break;
                 default:
                 {
